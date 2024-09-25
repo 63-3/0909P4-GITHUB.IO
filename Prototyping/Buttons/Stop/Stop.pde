@@ -14,9 +14,22 @@ int numberOfSongs = 3;
 AudioPlayer[] song = new AudioPlayer [numberOfSongs];
 int currentSong = numberOfSongs - numberOfSongs; //beginning current song is 0
 //
+int appWidth, appHeight;
+float stopX, stopY, stopWidth, stopHeight;
+//
 void setup()
 {
   size(900, 900);
+  appWidth = width;
+  appHeight = height;
+  //Variables for any music buttons
+  stopWidth = appWidth*1/2;
+  stopHeight = appHeight*1/2;
+  stopX = stopWidth - stopWidth*1/2; 
+  stopY = stopHeight - stopHeight*1/2;
+  
+  //stopX, stopY, stopWidth, stopHeight
+  //
   //
   minim = new Minim(this); //load data etc etc
 //
@@ -47,7 +60,7 @@ String directory = "../../../" + musicPathway;
   //DIVs
   //rect() based on variables; variables change with program (introduces parameters of a function and TABS)
   //rect( X, Y, Width, Height );
-  rect( width*1/2, height*1/2, width*1/4, height*1/4 ); //stopX, stopY, stopWidth, stopHeigh
+  rect( stopX, stopY, stopHeight, stopWidth );
 } //End setup
 //
 void draw() {
