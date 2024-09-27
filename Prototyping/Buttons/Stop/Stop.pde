@@ -1,4 +1,4 @@
- import ddf.minim.*;
+import ddf.minim.*;
 import ddf.minim.analysis.*;
 import ddf.minim.effects.*;
 import ddf.minim.signals.*;
@@ -13,58 +13,79 @@ int currentSong = numberOfSongs - numberOfSongs;  //beginning current song as ZE
 //
 int appWidth, appHeight;
 float musicButtonDIV_X, musicButtonDIV_Y, musicButtonDIV_Width, musicButtonDIV_Height;
-float musisButtonSquareWidth, musicButtonSquareHeight, musicButtonSquareX, musisButtonSquareY;
+float musicButtonSquareX, musicButtonSquareY, musicButtonSquareWidth, musicButtonSquareHeight;
+float stopX, stopY, stopWidth, stopHeight;
 //
 void setup()
 {
-  size(600, 800);
+  size(1000, 800);
+  size(400, 800);
   appWidth = width;
   appHeight = height;
   //Variables for any music button
   musicButtonDIV_Width = appWidth*1/2;
   musicButtonDIV_Height = appHeight*1/2;
   musicButtonDIV_X = musicButtonDIV_Width - musicButtonDIV_Width*1/2;
-  musicButtonDIV_Y = musicButtonDIV_Height - musicButtonDIV_Height*1/2;
+  musicButtonDIV_Y = musicButtonDIV_Height- musicButtonDIV_Height*1/2;
   //Use if statement to change, introduce ternary operator
   //
-  //Population(variables)
-  
-  musicButtonDIV_Width = musicButtonDIV_Height;
-  musicButtonDIV_Height = musicButtonDIV_Height;
-  
+  //Population (Variables)
+  //Work out a case Study: Landscape
+  musicButtonSquareWidth = musicButtonDIV_Height;
+  musicButtonSquareHeight = musicButtonDIV_Height;
+  float padding1 = musicButtonDIV_Width - musicButtonDIV_Height; //working out value needed, with formulae
+  float padding2 = padding1*1/2; ////working out value needed, with formulae
+  musicButtonSquareX = musicButtonDIV_X + padding2; //note: minus moves it the wrong way, difficult to see
+  musicButtonSquareY = musicButtonDIV_Y;
+  println( musicButtonDIV_X, musicButtonDIV_Y, musicButtonDIV_Width, musicButtonDIV_Height ); 
+  println ( musicButtonSquareX, musicButtonSquareY, musicButtonSquareWidth, musicButtonSquareHeight );
+  println ( padding1 );
+  //
+  //Work out a case Study: Portrait
   /*
-  stopWidth = musicButtonDIV_Width*stopButtonSize;
-  stopHeight = musicButtonDIV_Height*stopButtonSize;
-  stopX = musicButtonDIV_X+padding;
-  stopY = musicButtonDIV_Y+padding;
-  */
+  if ( musicButtonDIV_Width >= musicButtonDIV_Height ) { //error: square does not go in the middle
+  //Work out a case Study: 
+  if ( musicButtonDIV_Width >= musicButtonDIV_Height ) { // Landscape //error: square does not go in the middle
+   // musicButtonWidth needs to change
+   musicButtonSquareWidth = musicButtonDIV_Height;
+   musicButtonSquareHeight = musicButtonDIV_Height;
+   musicButtonSquareX = musicButtonDIV_X + ( ( musicButtonDIV_Width - musicButtonDIV_Height )*1/2 );
+   musicButtonSquareWidth = musicButtonDIV_Height ;
+   musicButtonSquareHeight = musicButtonDIV_Height ;
+   float padding1 = musicButtonDIV_Width - musicButtonDIV_Height; //working out value needed, with formulae
+   float padding2 = padding1*1/2; ////working out value needed, with formulae
+   musicButtonSquareX = musicButtonDIV_X + padding2 ; //note: minus moves it the wrong way, difficult to see
+   musicButtonSquareY = musicButtonDIV_Y;
+   } else {
+   println( musicButtonDIV_X, musicButtonDIV_Y, musicButtonDIV_Width, musicButtonDIV_Height );
+   println ( musicButtonSquareX, musicButtonSquareY, musicButtonSquareWidth, musicButtonSquareHeight );
+   println ( padding1 );
+   } else { //Portrait
+   // musicButtonHeight needs to change
+   musicButtonSquareWidth = musicButtonDIV_Width;
+   musicButtonSquareWidth = musicButtonDIV_Width ;
+   musicButtonSquareHeight = musicButtonDIV_Width;
+   musicButtonSquareX = musicButtonDIV_X;
+   musicButtonSquareY = musicButtonDIV_Y + musicButtonDIV_Width*1/2;
+   float padding1 = musicButtonDIV_Height - musicButtonDIV_Width; //working out value needed, with formulae
+   float padding2 = padding1*1/2; ////working out value needed, with formulae
+   musicButtonSquareX = musicButtonDIV_X; //note: minus moves it the wrong way, difficult to see
+   musicButtonSquareY = musicButtonDIV_Y + padding2;
+   println( musicButtonDIV_X, musicButtonDIV_Y, musicButtonDIV_Width, musicButtonDIV_Height );
+   println ( musicButtonSquareX, musicButtonSquareY, musicButtonSquareWidth, musicButtonSquareHeight );
+   println ( padding1 );
+   }
+   */
+  //float padding = 1.0/4.0;
+  //float stopButtonSize = 1.0-(1.0/4.0);
+  /*
+  stopWidth = musicButtonDIV_Width*stopButtonSize; //stopButtonSize
+   stopHeight = musicButtonDIV_Height*stopButtonSize; //stopButtonSize
+   stopX = musicButtonDIV_X+padding;
+   stopY = musicButtonDIV_Y+padding;
+   */
   //
-  // musicButtonWidth needs to change
-  musicButtonSquareWidth = musicButtonDIV_Width;
-  musicButtonSquareHeight = musicButtonDIV_Width;
-  float padding1 = musicButtonDIV_Height - musicButtonDIV_Width;
-  float padding2 = padding1*1/2;
-  musicButtonSquareX = musicButtonDIV_X;
-  musicButtonSquareY = musicButtonDIV_Y + padding2;
-  println( musicButtonDIV_X, musicButtonDIV_Y, musicButtonDiv_Width, musicButtonDiv_Height );
-  println ( musicButtonSquareX, musicButtonSquareY, musicButtonSquareWidth, musicButtonSquareHeight );
-  println ( padding1);  
-  if   ( musicButtonDIV_Height >= musicButtonSquareWidth )
-    musicButtonSquareWidth = musicButtonDIV_Width;
-  musicButtonSquareHeight = musicButtonDIV_Width;
-  float padding1 = musicButtonDIV_Height - musicButtonDIV_Width;
-  float padding2 = padding1*1/2;
-  musicButtonSquareX = musicButtonDIV_X;
-  musicButtonSquareY = musicButtonDIV_Y + padding2;
-  println( musicButtonDIV_X, musicButtonDIV_Y, musicButtonDiv_Width, musicButtonDiv_Height );
-  println ( musicButtonSquareX, musicButtonSquareY, musicButtonSquareWidth, musicButtonSquareHeight );
-  println ( padding1);  
- } else {
-    musicButtonHeight = musicButtonWidth;
-  }
- 
   minim = new Minim(this); //load from data directory, loadFile should also load from project folder
-  //
   // Load Music
   String musicPathway = "Music/";
   String mp3FileName = ".mp3";
@@ -97,12 +118,10 @@ void setup()
 } //End setup
 //
 void draw() {
-  /*
-  background(200); // Gray Scale: 0-255
-  rect( musicButtonSquareX, musicButtonSquareY, musicButtonSquareWidth, musicButtonSquareHeight ); //Square
+  //background(200); // Gray Scale: 0-255
+  rect( musicButtonSquareX, musicButtonSquareY, musicButtonSquareWidth, musicButtonSquareHeight );
   //fill();
-  rect( stopX, stopY, stopWidth, stopHeight );
-  */
+  //rect( stopX, stopY, stopWidth, stopHeight );
 } //End draw
 //
 void mousePressed() {
