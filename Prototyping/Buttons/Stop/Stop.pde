@@ -12,10 +12,6 @@ AudioPlayer[] song = new AudioPlayer[numberOfSongs];
 int currentSong = numberOfSongs - numberOfSongs;  //beginning current song as ZERO
 //
 int appWidth, appHeight;
-float musicButtonDIV_X, musicButtonDIV_Y, musicButtonDIV_Width, musicButtonDIV_Height;
-float musicButtonSquareX, musicButtonSquareY, musicButtonSquareWidth, musicButtonSquareHeight;
-float stopX, stopY, stopWidth, stopHeight;
-//
 void setup()
 {
   size(1000, 800);
@@ -111,17 +107,14 @@ void setup()
   //Introduce keyPressed as keyboard shortcuts
   //Introduce mousePressed as interaction
   //
-  //DIVs
-  //rect() based on variables; variables change with program (introduces parameters of a function and TABS)
-  //rect( X, Y, Width, Height );
-  rect( musicButtonDIV_X, musicButtonDIV_Y, musicButtonDIV_Width, musicButtonDIV_Height );
+  divs();
 } //End setup
 //
 void draw() {
   //background(200); // Gray Scale: 0-255
   rect( musicButtonSquareX, musicButtonSquareY, musicButtonSquareWidth, musicButtonSquareHeight );
   //fill();
-  //rect( stopX, stopY, stopWidth, stopHeight );
+  rect( stopX, stopY, stopWidth, stopHeight );
 } //End draw
 //
 void mousePressed() {
