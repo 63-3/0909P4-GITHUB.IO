@@ -72,14 +72,12 @@ void setup()
    println ( padding1 );
    }
    */
-  //float padding = 1.0/4.0;
-  //float stopButtonSize = 1.0-(1.0/4.0);
-  /*
+  float padding = 1.0/5.0;
+  float stopButtonSize = 1.0-(1.0/4.0);
   stopWidth = musicButtonDIV_Width*stopButtonSize; //stopButtonSize
    stopHeight = musicButtonDIV_Height*stopButtonSize; //stopButtonSize
-   stopX = musicButtonDIV_X+padding;
-   stopY = musicButtonDIV_Y+padding;
-   */
+   stopX = musicButtonSquareX+padding;
+   stopY = musicButtonY+padding;
   //
   minim = new Minim(this); //load from data directory, loadFile should also load from project folder
   // Load Music
