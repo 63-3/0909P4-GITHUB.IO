@@ -7,15 +7,18 @@ import ddf.minim.ugens.*;
 //
 //Global Variables
 Minim minim;
-int numberOfSongs = 8; //Able to Autodetect based on Pathway
+int numberOfSongs = 3; //Able to Autodetect based on Pathway
 AudioPlayer[] song = new AudioPlayer[numberOfSongs];
 int currentSong = numberOfSongs - numberOfSongs;  //beginning current song as ZERO
 //
 int appWidth, appHeight;
+float musicButtonDIV_X=0.0, musicButtonDIV_Y=0.0, musicButtonDIV_Width=0.0, musicButtonDIV_Height=0.0;
+float musicButtonSquareX=0.0, musicButtonSquareY=0.0, musicButtonSquareWidth=0.0, musicButtonSquareHeight=0.0;
+float stopX=0.0, stopY=0.0, stopWidth=0.0, stopHeight=0.0;
+//
 void setup()
 {
   size(1000, 800);
-  size(400, 800);
   appWidth = width;
   appHeight = height;
   //Variables for any music button
@@ -26,43 +29,22 @@ void setup()
   //Use if statement to change, introduce ternary operator
   //
   //Population (Variables)
-  //Work out a case Study: Landscape
-  musicButtonSquareWidth = musicButtonDIV_Height;
-  musicButtonSquareHeight = musicButtonDIV_Height;
-  float padding1 = musicButtonDIV_Width - musicButtonDIV_Height; //working out value needed, with formulae
-  float padding2 = padding1*1/2; ////working out value needed, with formulae
-  musicButtonSquareX = musicButtonDIV_X + padding2; //note: minus moves it the wrong way, difficult to see
-  musicButtonSquareY = musicButtonDIV_Y;
-  println( musicButtonDIV_X, musicButtonDIV_Y, musicButtonDIV_Width, musicButtonDIV_Height ); 
-  println ( musicButtonSquareX, musicButtonSquareY, musicButtonSquareWidth, musicButtonSquareHeight );
-  println ( padding1 );
-  //
-  //Work out a case Study: Portrait
-  /*
-  if ( musicButtonDIV_Width >= musicButtonDIV_Height ) { //error: square does not go in the middle
   //Work out a case Study: 
   if ( musicButtonDIV_Width >= musicButtonDIV_Height ) { // Landscape //error: square does not go in the middle
    // musicButtonWidth needs to change
-   musicButtonSquareWidth = musicButtonDIV_Height;
-   musicButtonSquareHeight = musicButtonDIV_Height;
-   musicButtonSquareX = musicButtonDIV_X + ( ( musicButtonDIV_Width - musicButtonDIV_Height )*1/2 );
    musicButtonSquareWidth = musicButtonDIV_Height ;
    musicButtonSquareHeight = musicButtonDIV_Height ;
    float padding1 = musicButtonDIV_Width - musicButtonDIV_Height; //working out value needed, with formulae
    float padding2 = padding1*1/2; ////working out value needed, with formulae
    musicButtonSquareX = musicButtonDIV_X + padding2 ; //note: minus moves it the wrong way, difficult to see
    musicButtonSquareY = musicButtonDIV_Y;
-   } else {
    println( musicButtonDIV_X, musicButtonDIV_Y, musicButtonDIV_Width, musicButtonDIV_Height );
    println ( musicButtonSquareX, musicButtonSquareY, musicButtonSquareWidth, musicButtonSquareHeight );
    println ( padding1 );
    } else { //Portrait
    // musicButtonHeight needs to change
-   musicButtonSquareWidth = musicButtonDIV_Width;
    musicButtonSquareWidth = musicButtonDIV_Width ;
    musicButtonSquareHeight = musicButtonDIV_Width;
-   musicButtonSquareX = musicButtonDIV_X;
-   musicButtonSquareY = musicButtonDIV_Y + musicButtonDIV_Width*1/2;
    float padding1 = musicButtonDIV_Height - musicButtonDIV_Width; //working out value needed, with formulae
    float padding2 = padding1*1/2; ////working out value needed, with formulae
    musicButtonSquareX = musicButtonDIV_X; //note: minus moves it the wrong way, difficult to see
@@ -71,32 +53,42 @@ void setup()
    println ( musicButtonSquareX, musicButtonSquareY, musicButtonSquareWidth, musicButtonSquareHeight );
    println ( padding1 );
    }
-   */
+   stopWidth = musicButtonSquareWidth*3/5;
+   stopHeight = stopWidth;
+   stopX = musicButtonSquareX + musicButtonSquareX*1/4;
+   stopY = musicButtonSquareY + musicButtonSquareY*1/4;
+   println( stopX, stopY, stopWidth, stopHeight );
+   //
+   /* Music Button Square Formulae for IF Statement Above
+   // Use Paper Folding and Case Study
   float padding = 1.0/5.0;
-  float stopButtonSize = 1.0-(1.0/4.0);
-  stopWidth = musicButtonDIV_Width*stopButtonSize; //stopButtonSize
-   stopHeight = musicButtonDIV_Height*stopButtonSize; //stopButtonSize
-   stopX = musicButtonSquareX+padding;
-   stopY = musicButtonY+padding;
+   float stopButtonSize = musicButtonSquareWidth*3/5;
+   stopWidth = stopButtonSize; 
+   stopHeight = stopButtonSize;
+   stopX = musicButtonSquareX + musicButtonSquareX*padding;
+   stopY = musicButtonSquareY + musicButtonSquareY*padding;
+   */
   //
   minim = new Minim(this); //load from data directory, loadFile should also load from project folder
+  //
+  //
   // Load Music
   String musicPathway = "Music/";
   String mp3FileName = ".mp3";
-  //Alphebetical order, same as OS ordering files
   String ariaMath = "ariamath";
   String miceOnVenus = "miceonvenus";
   String sugarStarPlanetarium = "sugar_star_planetarium";
-  //
+    //
   //Add Reading into Array
-  String directory = "../../../" + musicPathway;
-  String file = directory + ariaMath + mp3FileName;
+  String directory = "../../../" + musicPathway;;
+  String file+ m = directory + cycles p3FileName;;
   song[currentSong] = minim.loadFile( file );
-  file = directory + miceOnVenus + mp3FileName;
+  file = directory + beatYourCompetition + mp3FileName;
   song[currentSong+=1] = minim.loadFile( file );
-  file = directory + sugarStarPlanetarium + mp3FileName;
+  file = directory + cycles + mp3FileName;
   song[currentSong+=1] = minim.loadFile( file );
-  //
+  file = directory + eureka + mp3FileName;
+  song[currentSong+=1] = minim.loadFile( file );
   currentSong = 0;
   //
   song[currentSong].play();
@@ -105,7 +97,10 @@ void setup()
   //Introduce keyPressed as keyboard shortcuts
   //Introduce mousePressed as interaction
   //
-  divs();
+  //DIVs
+  //rect() based on variables; variables change with program (introduces parameters of a function and TABS)
+  //rect( X, Y, Width, Height );
+  rect( musicButtonDIV_X, musicButtonDIV_Y, musicButtonDIV_Width, musicButtonDIV_Height );
 } //End setup
 //
 void draw() {
