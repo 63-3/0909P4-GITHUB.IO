@@ -22,7 +22,7 @@ color darkForeground=blue1, darkHoverover=blue2, darkBackground=grey;
 color nightForeground=sap, nightHoverover=orange3, nightBackground=black;
 color appColorForeground, appColorHoverover, appColorBackground;
 //
-Boolean colorDayMode=true, colorDarkMode=false, colorDayMode=false;
+Boolean colorDarkMode=false;
 /*
 
    - Day: Foreground #FFC986 | Background (Hoverover) #E89D60 | Background: #FFF6DE
@@ -119,7 +119,7 @@ if (hour()<=7 || hour()>=17) {
   appColorForeground = nightForeground;
   appColorHoverover = nightColorHoverover;
   appColorBackground = nightColorHoverover;
-} else if () {
+} else if (hour()>7 || hour()<17) {
 //day mode mode
   appColorForeground = dayForeground;
   appColorHoverover = dayColorHoverover;
@@ -150,11 +150,11 @@ void draw() {
   //
   //Hoverover IF - Used in all other buttons too
   if ( mouseX>musicButtonSquareX && mouseX<musicButtonSquareX+musicButtonSquareWidth && mouseY>musicButtonSquareY && mouseY<musicButtonSquareY+musicButtonSquareHeight ) {
-    stopButtonHoverOver = yellow; // Single Line IFs for Day, Dark, and Night Booleans
+    stopButtonHoverOver = appColorHoverover; // Single Line IFs for Day, Dark, and Night Booleans
   } else {
-    stopButtonHoverOver = purple; // Single Line IFs for Day, Dark, and Night Booleans
+    stopButtonHoverOver = appColorForeground; // Single Line IFs for Day, Dark, and Night Booleans
   }
-  fill(stopButtonHoverOver);
+  fill(stopButtonHoverOver );
   noStroke(); //Colour
   //
   rect( stopX, stopY, stopWidth, stopHeight ); //(X, Y, width, height, roundedEdge1, roundedEdge2, roundedEdge3, roundedEdge4, )
