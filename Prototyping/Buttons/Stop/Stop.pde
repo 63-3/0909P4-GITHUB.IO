@@ -16,6 +16,22 @@ float musicButtonDIV_X=0.0, musicButtonDIV_Y=0.0, musicButtonDIV_Width=0.0, musi
 float musicButtonSquareX=0.0, musicButtonSquareY=0.0, musicButtonSquareWidth=0.0, musicButtonSquareHeight=0.0;
 float stopX=0.0, stopY=0.0, stopWidth=0.0, stopHeight=0.0;
 //
+color orange1=#FFC986, orange2=#E89D60, white=#FFF6DE, blue1=#436BAA, blue2=#2C5CA7, grey=#3A3C43, sap=#C99400, orange3=#F5A400, black=#000000;
+color dayForeground=orange1, dayHoverover=orange2, dayBackground=white;
+color darkForeground=blue1, darkHoverover=blue2, darkBackground=grey;
+color nightForeground=sap, nightHoverover=orange3, nightBackground=black;
+color appColorForeground, appColorHoverover, appColorBackground;
+//
+Boolean colorDayMode=true, colorDarkMode=false, colorDayMode=false;
+/*
+
+   - Day: Foreground #FFC986 | Background (Hoverover) #E89D60 | Background: #FFF6DE
+   - Dark: Foreground #436BAA| Background (Hoverover) #2C5CA7| Background: #3A3C43
+   - Night: Foreground #C99400| Background (Hoverover) #F5A400| Background: #000000
+   
+   */
+   
+   //
 void setup()
 {
   size(1000, 800);
@@ -98,17 +114,96 @@ void setup()
   //rect( musicButtonDIV_X, musicButtonDIV_Y, musicButtonDIV_Width, musicButtonDIV_Height );
 } //End setup
 //
+if (hour()<=7 || hour()>=17) {
+//night mode}
+  appColorForeground = nightForeground;
+  appColorHoverover = nightColorHoverover;
+  appColorBackground = nightColorHoverover;
+} else if () {
+//day mode mode
+  appColorForeground = dayForeground;
+  appColorHoverover = dayColorHoverover;
+  appColorBackground = nightColorHoverover;
+} else {
+//dark mode
+ appColorForeground = darkForeground;
+ appColorHoverover = darkColorHoverover;
+ appColorBackground = darkColorHoverover;
+
+}
+//
 void draw() {
-  //background(200); // Gray Scale: 0-255
+  background(0); //Gray Scale: 0-255, full BLUE Colour
+  //
   rect( musicButtonSquareX, musicButtonSquareY, musicButtonSquareWidth, musicButtonSquareHeight );
-  //fill();
-  rect( stopX, stopY, stopWidth, stopHeight );
+  //
+  /* Note: 3 types of colour, in pairs for hoverover
+   - Day: Foreground #FFC986 | Background (Hoverover) #E89D60 | Background: #FFF6DE
+   - Dark: Foreground #436BAA| Background (Hoverover) #2C5CA7| Background: #3A3C43
+   - Night: Foreground #C99400| Background (Hoverover) #F5A400| Background: #000000
+   - Dark Mode is for all the time, how bright the screen is and eye strain
+   - API: when does sunrise, when does sunset, is the system time within those hours
+   - Night mode is for all the time or just
+   - Note: preferences are hardcoded here but can be choices in CS20
+   */
+  //if ( day ) {} else if ( dark ) {} else {}
+  //
+  //Hoverover IF - Used in all other buttons too
+  if ( mouseX>musicButtonSquareX && mouseX<musicButtonSquareX+musicButtonSquareWidth && mouseY>musicButtonSquareY && mouseY<musicButtonSquareY+musicButtonSquareHeight ) {
+    stopButtonHoverOver = yellow; // Single Line IFs for Day, Dark, and Night Booleans
+  } else {
+    stopButtonHoverOver = purple; // Single Line IFs for Day, Dark, and Night Booleans
+  }
+  fill(stopButtonHoverOver);
+  noStroke(); //Colour
+  //
+  rect( stopX, stopY, stopWidth, stopHeight ); //(X, Y, width, height, roundedEdge1, roundedEdge2, roundedEdge3, roundedEdge4, )
+  fill(255); //noFill();
+  stroke(1); //Reset default
+  //
+  //Music Buttons Interactions: cascading IFs can become AND Statements
+  //Note: keypressed must have click on screen
+  //
 } //End draw
 //
 void mousePressed() {
+  //Boolean for Click
+  //if() {} else {}
+  //
+  /* STOP Button Mouse Press, after Hoverover
+   Must have Hoverover to ensure mouse will activate, visual confirmation of algorithm
+   */
+  if ( mouseX>musicButtonSquareX && mouseX<musicButtonSquareX+musicButtonSquareWidth && mouseY>musicButtonSquareY && mouseY<musicButtonSquareY+musicButtonSquareHeight ) {
+    if ( song[currentSong].isPlaying() ) {
+      song[currentSong].pause(); //single tap
+    } else {
+      song[currentSong].rewind(); //double tap
+    }
+  }
+  //
 } //End mousePressed
 //
 void keyPressed() {
+  /* Key Board Short Cuts ... learning what the Music Buttons could be
+   Note: CAP Lock with ||
+   if ( key==? || key==? ) ;
+   */
+  //if ( key=='P' || key=='p' ) song[currentSong].play(); //Simple Play, no double tap possible
+  //
+  if ( key=='P' || key=='p' ) song[currentSong].loop(0); //Simple Play, double tap possible
+  /* Note: double tap is automatic rewind, no pause
+   Symbol is two triangles
+   This changes what the button might become after it is pressed
+   */
+  //if ( key=='S' || key=='s' ) song[currentSong].pause(); //Simple Stop, no double taps
+  //
+  if ( key=='S' | key=='s' ) {
+    if ( song[currentSong].isPlaying() ) {
+      song[currentSong].pause(); //single tap
+    } else {
+      song[currentSong].rewind(); //double tap
+    }
+  }
 } //End keyPressed
 //
 // End Main Program
