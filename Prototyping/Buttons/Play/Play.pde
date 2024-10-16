@@ -71,8 +71,15 @@ void setup()
    }
    stopWidth = musicButtonSquareWidth*3/5;
    stopHeight = stopWidth;
-   stopX = musicButtonSquareX + musicButtonSquareX*1/4;
-   stopY = musicButtonSquareY + musicButtonSquareY*1/4;
+   stopX = musicButtonSquareX + musicButtonSquarWidtheX*1/4;
+   stopY = musicButtonSquareY + musicButtonSquareYHeight*1/4;
+   playButton1x = musicButtonSquareX + musicButtonSquareWidth*1/4; 
+   playButton1y = musicButtonSquareY + musicButtonSquareHeightY*1/4; 
+   playButton2x = musicButtonSquareX + musicButtonSquareWidth*3/4; 
+   playButton2y = musicButtonSquareY + musicButtonSquareHeightY*1/2; 
+   playButton3x = musicButtonSquareX + musicButtonSquareWidth*1/4; 
+   playButton3y = musicButtonSquareY + musicButtonSquareHeightY*3/4; 
+   
    println( stopX, stopY, stopWidth, stopHeight );
    //
    /* Music Button Square Formulae for IF Statement Above
@@ -114,12 +121,12 @@ void setup()
   //rect( musicButtonDIV_X, musicButtonDIV_Y, musicButtonDIV_Width, musicButtonDIV_Height );
 } //End setup
 //
-if (hour()<=7 || hour()>=17) {
+if (hour()<=7 || hour()>=17) { 
 //night mode}
   appColorForeground  = nightForeground;
   appColorHoverover = nightColorHoverover;
   appColorBackground = nightColorHoverover;
-} else if (hour()>7 || hour()<17) {
+ } else if (hour()>7 || hour()<17) {
 //day mode mode
   appColorForeground = dayForeground;
   appColorHoverover = dayColorHoverover;
@@ -156,7 +163,7 @@ void draw() {
   fill(stopButtonHoverOver );
   noStroke(); //Colour
   //
-  rect( stopX, stopY, stopWidth, stopHeight ); //(X, Y, width, height, roundedEdge1, roundedEdge2, roundedEdge3, roundedEdge4, )
+  triangle(playButton1x, playButton1y, playButton2x, playButton2y, playButton3x, playButton3y);
   fill(255); //noFill();
   stroke(1); //Reset default
   //
