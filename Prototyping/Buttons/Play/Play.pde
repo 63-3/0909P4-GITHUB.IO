@@ -15,6 +15,7 @@ int appWidth, appHeight;
 float musicButtonDIV_X=0.0, musicButtonDIV_Y=0.0, musicButtonDIV_Width=0.0, musicButtonDIV_Height=0.0;
 float musicButtonSquareX=0.0, musicButtonSquareY=0.0, musicButtonSquareWidth=0.0, musicButtonSquareHeight=0.0;
 float stopX=0.0, stopY=0.0, stopWidth=0.0, stopHeight=0.0;
+float playButton1x, playButton1y, playButton2x, playButton2y, playButton3x, playButton3y;
 //
 color orange1=#FFC986, orange2=#E89D60, white=#FFF6DE, blue1=#436BAA, blue2=#2C5CA7, grey=#3A3C43, sap=#C99400, orange3=#F5A400, black=#000000;
 color dayForeground=orange1, dayHoverover=orange2, dayBackground=white;
@@ -180,12 +181,7 @@ void mousePressed() {
    Must have Hoverover to ensure mouse will activate, visual confirmation of algorithm
    */
   if ( mouseX>musicButtonSquareX && mouseX<musicButtonSquareX+musicButtonSquareWidth && mouseY>musicButtonSquareY && mouseY<musicButtonSquareY+musicButtonSquareHeight ) {
-    if ( song[currentSong].isPlaying() ) {
-      song[currentSong].pause(); //single tap
-    } else {
-      song[currentSong].rewind(); //double tap
-    }
-  }
+    if (  if ( key=='P' || key=='p' ) song[currentSong].loop(0); //Simple Play, double tap possible
   //
 } //End mousePressed
 //
