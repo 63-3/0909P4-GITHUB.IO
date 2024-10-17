@@ -15,6 +15,8 @@ int appWidth, appHeight;
 float musicButtonDIV_X=0.0, musicButtonDIV_Y=0.0, musicButtonDIV_Width=0.0, musicButtonDIV_Height=0.0;
 float musicButtonSquareX=0.0, musicButtonSquareY=0.0, musicButtonSquareWidth=0.0, musicButtonSquareHeight=0.0;
 float stopX=0.0, stopY=0.0, stopWidth=0.0, stopHeight=0.0;
+float quitThicknessLine;
+float quitButtonX1, quitButtonY1, quitButtonX2, quitButtonY2, quitButtonX3, quitButtonY3, quitButtonX4, quitButtonY4;
 //
 color orange1=#FFC986, orange2=#E89D60, white=#FFF6DE, blue1=#436BAA, blue2=#2C5CA7, grey=#3A3C43, sap=#C99400, orange3=#F5A400, black=#000000;
 color dayForeground=orange1, dayHoverover=orange2, dayBackground=white;
@@ -42,6 +44,7 @@ void setup()
   musicButtonDIV_Height = appHeight*1/2;
   musicButtonDIV_X = musicButtonDIV_Width - musicButtonDIV_Width*1/2;
   musicButtonDIV_Y = musicButtonDIV_Height- musicButtonDIV_Height*1/2;
+
   //Use if statement to change, introduce ternary operator
   //
   //Population (Variables)
@@ -75,15 +78,25 @@ void setup()
    stopY = musicButtonSquareY + musicButtonSquareY*1/4;
    println( stopX, stopY, stopWidth, stopHeight );
    //
-   /* Music Button Square Formulae for IF Statement Above
+   //Music Button Square Formulae for IF Statement Above
    // Use Paper Folding and Case Study
-  float padding = 1.0/5.0;
+   float padding = 1.0/5.0;
    float stopButtonSize = musicButtonSquareWidth*3/5;
    stopWidth = stopButtonSize; 
    stopHeight = stopButtonSize;
    stopX = musicButtonSquareX + musicButtonSquareX*padding;
    stopY = musicButtonSquareY + musicButtonSquareY*padding;
-   */
+   quitThicknessLine= ( musicButtonSquareWidth / musicButtonSquareWidth ) + musicButtonSquareWidth*1/4*1/2;
+  quitButtonX1 = stopX;
+  quitButtonY1 = stopY;
+  quitButtonX2 = stopX+stopWidth;
+  quitButtonY2 = stopY+stopHeight;
+  /*
+  quitButtonX3 = ;
+  quitButtonY3 = ;
+  quitButtonX4 = ;
+  quitButtonY4 = ;
+  */
   //
   minim = new Minim(this); //load from data directory, loadFile should also load from project folder
   //
@@ -154,12 +167,13 @@ void draw() {
     stopButtonHoverOver = appColorForeground; // Single Line IFs for Day, Dark, and Night Booleans
   }
   fill(stopButtonHoverOver );
-  noStroke(); //Colour
+  stroke(orange1); //Colour
   //
-  line();
-  line();
+  strokeWeight(quitThicknessLine);
+  line(quitButtonX1, quitButtonY1, quitButtonX2, quitButtonY2;);
+  line(quitButtonX3, quitButtonY3, quitButtonX4, quitButtonY4;);
   fill(255); //noFill();
-  stroke(1); //Reset default
+  noStroke(1); //Reset default
   //
   //Music Buttons Interactions: cascading IFs can become AND Statements
   //Note: keypressed must have click on screen
