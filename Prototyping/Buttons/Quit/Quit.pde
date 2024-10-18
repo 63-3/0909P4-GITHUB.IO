@@ -1,3 +1,4 @@
+
 import ddf.minim.*;
 import ddf.minim.analysis.*;
 import ddf.minim.effects.*;
@@ -23,6 +24,7 @@ color dayForeground=orange1, dayHoverover=orange2, dayBackground=white;
 color darkForeground=blue1, darkHoverover=blue2, darkBackground=grey;
 color nightForeground=sap, nightHoverover=orange3, nightBackground=black;
 color appColorForeground, appColorHoverover, appColorBackground;
+color stopButtonHoverOver, quitButtonLneColor;
 //
 Boolean colorDarkMode=false;
 /*
@@ -91,11 +93,10 @@ void setup()
   quitButtonY1 = stopY;
   quitButtonX2 = stopX+stopWidth;
   quitButtonY2 = stopY+stopHeight;
-  /*
-  quitButtonX3 = ;
-  quitButtonY3 = ;
-  quitButtonX4 = ;
-  quitButtonY4 = ;
+  quitButtonX3 = quitButtonX2;
+  quitButtonY3 = quitButtonY1;
+  quitButtonX4 = quitButtonX1;
+  quitButtonY4 = quitButtonY2;
   */
   //
   minim = new Minim(this); //load from data directory, loadFile should also load from project folder
@@ -163,15 +164,19 @@ void draw() {
   //Hoverover IF - Used in all other buttons too
   if ( mouseX>musicButtonSquareX && mouseX<musicButtonSquareX+musicButtonSquareWidth && mouseY>musicButtonSquareY && mouseY<musicButtonSquareY+musicButtonSquareHeight ) {
     stopButtonHoverOver = appColorHoverover; // Single Line IFs for Day, Dark, and Night Booleans
+    quitButtonLneColor =  ;
   } else {
     stopButtonHoverOver = appColorForeground; // Single Line IFs for Day, Dark, and Night Booleans
+    quitButtonLneColor = appColorForeground ;
   }
   fill(stopButtonHoverOver );
-  stroke(orange1); //Colour
+  stroke(orange1); //Color
+  stroke(1);
   //
+  stroke(quitButtonLneColor);
   strokeWeight(quitThicknessLine);
-  line(quitButtonX1, quitButtonY1, quitButtonX2, quitButtonY2;);
-  line(quitButtonX3, quitButtonY3, quitButtonX4, quitButtonY4;);
+  line(quitButtonX1, quitButtonY1, quitButtonX2, quitButtonY2);
+  line(quitButtonX3, quitButtonY3, quitButtonX4, quitButtonY4);
   fill(255); //noFill();
   noStroke(1); //Reset default
   //
